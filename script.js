@@ -1,38 +1,15 @@
-const callStack = [];
-
-function pushStack(funcName) {
-  callStack.push(funcName);
-  console.log(`PUSH: ${funcName} | Current Stack: [${callStack.join(" -> ")}]`);
-}
-
-function popStack(funcName) {
-  const popped = callStack.pop();
-  console.log(`POP:  ${funcName} | Current Stack: [${callStack.join(" -> ")}]`);
-}
-
 function foo() {
-  console.trace("Inside foo"); 
-  pushStack("foo");
-
   bar();
-
-  popStack("foo");
+  console.trace("Inside foo"); // called last
 }
 
 function bar() {
-  console.trace("Inside bar");  
-  pushStack("bar");
-
   baz();
-
-  popStack("bar");
+  console.trace("Inside bar");
 }
 
 function baz() {
-  console.trace("Inside baz");
-  pushStack("baz");
-
-  popStack("baz");
+  console.trace("Inside baz"); 
 }
 
 foo();
